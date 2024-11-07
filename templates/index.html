@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Interstate Traffic Volume Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/images/traffic.jpg'); /* Add a traffic photo here */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay to enhance visibility */
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        h1 {
+            font-size: 32px;
+            color: #ffcc00; /* Bright yellow for main header */
+        }
+        h2 {
+            font-size: 24px;
+            color: #b88142; /* Green for section headers */
+        }
+        label {
+            color: #f6c6c6; /* Light grey for input labels */
+            display: block;
+            margin: 10px 0;
+            text-align: center; /* Center-align labels */
+        }
+        input, select {
+            padding: 8px;
+            border: 1px solid #cc2424;
+            border-radius: 4px;
+            width: 100%; /* Full width for input fields */
+            max-width: 400px;
+            margin: 0 auto 10px auto; /* Center input fields */
+            display: block;
+        }
+
+        p.weather-info {
+            color: #ffcc00; /* Light grey color for better readability */
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Smooth transitions */
+            position: relative; /* For the shadow and animation effects */
+        }
+        button:hover {
+            background-color: #218838;
+            transform: scale(1.08); /* Grow slightly on hover */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Add a shadow on hover */
+            animation: bounce 0.6s; /* Apply bounce animation on hover */
+        }
+        button:active {
+            transform: scale(1); /* Reset scale to default on click */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Reduce shadow on click */
+            transition: transform 0.1s ease; /* Slightly faster transition for click */
+        }
+        /* Keyframes for subtle bounce effect */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0); /* Start and end in default position */
+            }
+            40% {
+                transform: translateY(-5px); /* Small upward movement */
+            }
+            60% {
+                transform: translateY(-3px); /* Small downward movement */
+            }
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        a {
+            color: #f3682d; /* Blue color for the link */
+            text-decoration: none; /* Remove underline */
+        }
+
+        a:hover {
+            color: #e68558; /* Lighter blue on hover */
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        p {
+            margin-top: 30px; /* Space above paragraph */
+            margin-bottom: 30px; /* Space below paragraph */
+        }
+
+        p.intro-text {
+            color: #ffcc00; /* Orange color for better visibility */
+            font-size: 16px; /* Adjust font size if needed */
+            font-weight: bold; /* Make the text bold */
+        }   
+
+        .small-note {
+            font-size: 10px; /* Make the font smaller */
+            color: rgba(255, 255, 255, 0.6); /* White color with 60% transparency */
+            text-align: center;
+            margin-top: 10px; /* Adjusted spacing to separate from other elements */
+            max-width: 400px; /* Limit width */
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.2; /* Reduce line height for compactness */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Metro Traffic Prediction</h1>
+        <p class="intro-text">Enter the details below to predict the traffic volume on Interstate 94</p>
+        <form id="predictForm">
+            <h2>Enter Date and Time Details</h2>
+            <label for="day">Day of the travel</label>
+            <input type="number" id="day" name="day" required placeholder="Day (1-31)" min="1" max="31">
+
+            <label for="hour">Hour of the travel</label>
+            <input type="number" id="hour" name="hour" required placeholder="Hour (0-23)" min="0" max="23">
+
+            <h2>Enter Weather Conditions</h2>
+            <label for="temp_celsius">Temperature (°C)</label>
+            <input type="number" id="temp_celsius" name="temp_celsius" required placeholder="Temperature" step="0.01">
+
+            <label for="clouds_all">Cloud Coverage (%)</label>
+            <input type="number" id="clouds_all" name="clouds_all" required placeholder="Cloud coverage (0-100)" min="0" max="100">
+
+            <label for="weather_main">Weather Condition</label>
+            <select id="weather_main" name="weather_main" required>
+                <option value="0">Clear</option>
+                <option value="1">Clouds</option>
+                <option value="2">Drizzle</option>
+                <option value="3">Fog</option>
+                <option value="4">Haze</option>
+                <option value="5">Mist</option>
+                <option value="6">Rain</option>
+                <option value="8">Snow</option>
+                <option value="9">Squall</option>
+                <option value="10">Thunderstorm</option>
+            </select>
+
+            <p class="weather-info">
+                Not sure about the current weather? 
+                <a href="https://weather.com/weather/today/l/b6523d620cee69bb164641401d5a54a11403cbe4f84a91b328704e5e1b1805e0" target="_blank">Check live weather status</a>
+            </p>
+
+            <label for="holiday_flag">Is it a holiday?</label>
+            <select id="holiday_flag" name="holiday_flag" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+
+            <button type="submit">Predict Traffic Volume</button>
+        </form>
+
+        <h2>Prediction Result</h2>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        // Function to categorize the traffic volume into categories
+        function categorizeTrafficVolume(prediction) {
+            const thresholds = {
+                veryLow: 1193,
+                low: 3380,
+                moderate: 4933,
+                high: 7280
+            };
+
+            if (prediction < thresholds.veryLow) {
+                return "Very Low Traffic";
+            } else if (prediction < thresholds.low) {
+                return "Low Traffic";
+            } else if (prediction < thresholds.moderate) {
+                return "Moderate Traffic";
+            } else if (prediction < thresholds.high) {
+                return "High Traffic";
+            } else {
+                return "Very High Traffic";
+            }
+        }
+
+        // Form submission handler
+        document.getElementById("predictForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const day = document.getElementById("day").value;
+            const hour = document.getElementById("hour").value;
+            const temp_celsius = document.getElementById("temp_celsius").value;
+            const clouds_all = document.getElementById("clouds_all").value;
+            const weather_main = document.getElementById("weather_main").value;
+            const holiday_flag = document.getElementById("holiday_flag").value;
+
+            const prediction = await predictTrafficVolume(day, hour, temp_celsius, clouds_all, weather_main, holiday_flag);
+
+            // Get traffic category
+            const trafficCategory = categorizeTrafficVolume(prediction);
+
+            // Display result
+            document.getElementById("result").textContent = `Predicted Traffic Volume: ${prediction} vehicles/hour (${trafficCategory})`;
+        });
+
+        // Simulate the prediction API call
+        async function predictTrafficVolume(day, hour, temp_celsius, clouds_all, weather_main, holiday_flag) {
+            // Simulate a traffic volume prediction using random logic
+            return Math.floor(Math.random() * (8000 - 1000 + 1)) + 1000; // Random number between 1000 and 8000
+        }
+    </script>
+</body>
+</html>
