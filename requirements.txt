@@ -11,7 +11,7 @@ astrapy==1.4.2
 gunicorn
 catboost
 xgboost
-astrasdk
+astrapy
 statistics
 joblib
 pickle5
