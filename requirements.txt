@@ -1,4 +1,4 @@
-﻿numpy
+numpy
 Flask==3.0.3
 pandas==2.2.2
 pickle-mixin==1.0.2
@@ -9,4 +9,9 @@ seaborn
 plotly
 astrapy==1.4.2
 gunicorn
+catboost
+xgboost
+astrasdk
+statistics
 joblib
+pickle5
