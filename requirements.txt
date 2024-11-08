@@ -14,4 +14,3 @@ xgboost
 astrapy
 statistics
 joblib
-pickle5
