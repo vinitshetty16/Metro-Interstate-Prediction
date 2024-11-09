@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('/static/images/traffic.jpg'); /* Add a traffic photo here */
+            background-image: url('/static/images/traffic.jpg'); 
             background-size: cover;
             background-position: center;
             color: white;
@@ -15,7 +15,7 @@
             padding: 0;
         }
         .container {
-            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay to enhance visibility */
+            background-color: rgba(0, 0, 0, 0.7); 
             margin: 50px auto;
             padding: 20px;
             max-width: 600px;
@@ -25,30 +25,30 @@
         }
         h1 {
             font-size: 32px;
-            color: #ffcc00; /* Bright yellow for main header */
+            color: #ffcc00; 
         }
         h2 {
             font-size: 24px;
-            color: #b88142; /* Green for section headers */
+            color: #b88142; 
         }
         label {
-            color: #f6c6c6; /* Light grey for input labels */
+            color: #f6c6c6; 
             display: block;
             margin: 10px 0;
-            text-align: center; /* Center-align labels */
+            text-align: center; 
         }
         input, select {
             padding: 8px;
             border: 1px solid #cc2424;
             border-radius: 4px;
-            width: 100%; /* Full width for input fields */
+            width: 100%; 
             max-width: 400px;
-            margin: 0 auto 10px auto; /* Center input fields */
+            margin: 0 auto 10px auto; 
             display: block;
         }
 
         p.weather-info {
-            color: #ffcc00; /* Light grey color for better readability */
+            color: #ffcc00; 
         }
         button {
             padding: 10px 20px;
@@ -58,30 +58,30 @@
             border-radius: 4px;
             cursor: pointer;
             margin-top: 20px;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Smooth transitions */
-            position: relative; /* For the shadow and animation effects */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; 
+            position: relative; 
         }
         button:hover {
             background-color: #218838;
-            transform: scale(1.08); /* Grow slightly on hover */
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Add a shadow on hover */
-            animation: bounce 0.6s; /* Apply bounce animation on hover */
+            transform: scale(1.08); 
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+            animation: bounce 0.6s; 
         }
         button:active {
-            transform: scale(1); /* Reset scale to default on click */
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Reduce shadow on click */
-            transition: transform 0.1s ease; /* Slightly faster transition for click */
+            transform: scale(1); 
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); 
+            transition: transform 0.1s ease; 
         }
         /* Keyframes for subtle bounce effect */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0); /* Start and end in default position */
+                transform: translateY(0); 
             }
             40% {
-                transform: translateY(-5px); /* Small upward movement */
+                transform: translateY(-5px); 
             }
             60% {
-                transform: translateY(-3px); /* Small downward movement */
+                transform: translateY(-3px); 
             }
         }
 
@@ -93,35 +93,35 @@
         }
 
         a {
-            color: #f3682d; /* Blue color for the link */
-            text-decoration: none; /* Remove underline */
+            color: #f3682d; 
+            text-decoration: none; 
         }
 
         a:hover {
-            color: #e68558; /* Lighter blue on hover */
-            text-decoration: underline; /* Underline on hover */
+            color: #e68558; 
+            text-decoration: underline; 
         }
 
         p {
-            margin-top: 30px; /* Space above paragraph */
-            margin-bottom: 30px; /* Space below paragraph */
+            margin-top: 30px; 
+            margin-bottom: 30px; 
         }
 
         p.intro-text {
-            color: #ffcc00; /* Orange color for better visibility */
-            font-size: 16px; /* Adjust font size if needed */
-            font-weight: bold; /* Make the text bold */
+            color: #ffcc00; 
+            font-size: 16px; 
+            font-weight: bold; 
         }   
 
         .small-note {
-            font-size: 10px; /* Make the font smaller */
-            color: rgba(255, 255, 255, 0.6); /* White color with 60% transparency */
+            font-size: 10px; 
+            color: rgba(255, 255, 255, 0.6); 
             text-align: center;
-            margin-top: 10px; /* Adjusted spacing to separate from other elements */
-            max-width: 400px; /* Limit width */
+            margin-top: 10px; 
+            max-width: 400px; 
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.2; /* Reduce line height for compactness */
+            line-height: 1.2; 
         }
 
     </style>
@@ -223,7 +223,7 @@
         // Simulate the prediction API call
         async function predictTrafficVolume(day, hour, temp_celsius, clouds_all, weather_main, holiday_flag) {
             // Simulate a traffic volume prediction using random logic
-            return Math.floor(Math.random() * (8000 - 1000 + 1)) + 1000; // Random number between 1000 and 8000
+            return Math.floor(Math.random() * (8000 - 1000 + 1)) + 1000;
         }
     </script>
 </body>
